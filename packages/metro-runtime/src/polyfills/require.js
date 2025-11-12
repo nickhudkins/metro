@@ -35,8 +35,10 @@ type FactoryFn = (
   require: RequireFn,
   metroImportDefault: RequireFn,
   metroImportAll: RequireFn,
+  /*::
   moduleObject: {exports: {...}, ...},
   exports: {...},
+  */
   dependencyMap: ?DependencyMap,
 ) => void;
 type HotModuleReloadingCallback = () => void;

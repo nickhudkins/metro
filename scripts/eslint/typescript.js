@@ -27,4 +27,13 @@ module.exports = {
   ],
   plugins: ['@typescript-eslint'],
   parser: '@typescript-eslint/parser',
+  overrides: [
+    {
+      //
+      files: ['packages/metro-runtime/types/polyfills/require.d.ts'],
+      rules: {
+        '@typescript-eslint/no-explicit-any': 'off',
+      },
+    },
+  ],
 };

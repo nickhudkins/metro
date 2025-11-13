@@ -25,6 +25,7 @@ import type {
 } from 'metro-config';
 import type {CustomResolverOptions} from 'metro-resolver';
 import type {CustomTransformOptions} from 'metro-transform-worker';
+import type ws from 'ws';
 import typeof Yargs from 'yargs';
 
 import makeBuildCommand from './commands/build';
@@ -79,7 +80,7 @@ export type RunServerOptions = $ReadOnly<{
   waitForBundler?: boolean,
   watch?: boolean,
   websocketEndpoints?: $ReadOnly<{
-    [path: string]: ws$WebSocketServer,
+    [path: string]: ws.Server,
   }>,
 }>;
 
@@ -145,8 +146,11 @@ export type RunBuildResult = {
   ...
 };
 
-type BuildCommandOptions = {} | null;
-type ServeCommandOptions = {} | null;
+// This is a bit odd, but empty objects don't have a great
+// flow-alternative that flow-api-translator will translate nicely
+// to TypeScript, so here we go ahead and use this hack
+type BuildCommandOptions = /*:: {} | */ null;
+type ServeCommandOptions = /*:: {} | */ null;
 
 export {Terminal, JsonReporter, TerminalReporter};
 
@@ -510,7 +514,9 @@ export const buildGraph = async function (
 type AttachMetroCLIOptions = {
   build?: BuildCommandOptions,
   serve?: ServeCommandOptions,
+  /*::
   dependencies?: any,
+  */
   ...
 };
 

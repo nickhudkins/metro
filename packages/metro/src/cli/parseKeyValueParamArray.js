@@ -13,7 +13,9 @@ export default function coerceKeyValueArray(
   keyValueArray: $ReadOnlyArray<string>,
 ): {
   [key: string]: string,
+  /*::
   __proto__: null,
+  */
 } {
   const result: {[key: string]: string, __proto__: null} = Object.create(null);
   for (const item of keyValueArray) {

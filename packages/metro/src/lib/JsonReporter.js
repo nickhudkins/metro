@@ -19,6 +19,9 @@ export type SerializedError = {
   ...
 };
 
+/**
+ * $FlowFixMe[unclear-type] -- @typescript-eslint/no-explicit-any
+ */
 export type SerializedEvent<TEvent: {[string]: any, ...}> = TEvent extends {
   error: Error,
   ...
@@ -30,6 +33,9 @@ export type SerializedEvent<TEvent: {[string]: any, ...}> = TEvent extends {
     }
   : TEvent;
 
+/**
+ * $FlowFixMe[unclear-type] -- @typescript-eslint/no-explicit-any
+ */
 export default class JsonReporter<TEvent: {[string]: any, ...}> {
   _stream: Writable;
 

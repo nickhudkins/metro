@@ -10,7 +10,7 @@
  */
 
 import type {DeltaResult, Module, ReadOnlyGraph} from '../types';
-import type {HmrModule} from 'metro-runtime/src/modules/types';
+import type {HmrModule} from 'metro-runtime/private/modules/types';
 
 import {isJsModule, wrapModule} from './helpers/js';
 import * as jscSafeUrl from 'jsc-safe-url';

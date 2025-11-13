@@ -9,7 +9,13 @@
  */
 
 import type {NodePath} from '@babel/traverse';
-import type {CallExpression, Identifier, StringLiteral} from '@babel/types';
+import type {
+  CallExpression,
+  File as BabelNodeFile,
+  Identifier,
+  SourceLocation as BabelSourceLocation,
+  StringLiteral,
+} from '@babel/types';
 import type {
   AllowOptionalDependencies,
   AsyncDependencyType,

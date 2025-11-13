@@ -17,10 +17,15 @@ const SIZE_LIMIT = 100 * 1024 * 1024; // 100MB
 /**
  * Attempt to parse a request body as JSON.
  */
+/**
+ * $FlowFixMe[unclear-type] -- @typescript-eslint/no-explicit-any
+ */
+export type JsonBody = Promise<any>;
+
 export default function parseJsonBody(
   req: IncomingMessage,
   options: {strict?: boolean} = {},
-): Promise<$FlowFixMe> {
+): JsonBody {
   const {strict = true} = options;
 
   return new Promise((resolve, reject) => {

@@ -20,22 +20,40 @@ export class PackageCache {
   _getClosestPackage: GetClosestPackageFn;
   _packageCache: {
     [filePath: string]: Package,
+    /**
+     * Ensure that Object.create(null) is used to create
+     * the packageCache object to avoid prototype pollution issues.
+     */
+    /*::
     __proto__: null,
+    */
     ...
   };
-  // Cache for "closest package.json" queries by module path.
+  /**
+   * Cache for "closest package.json" queries by module path.
+   * Ensure that Object.create(null) is used to create
+   * the packageCache object to avoid prototype pollution issues.
+   */
   _packagePathAndSubpathByModulePath: {
     [filePath: string]: ?{
       packageJsonPath: string,
       packageRelativePath: string,
     },
+    /*::
     __proto__: null,
+    */
     ...
   };
-  // The inverse of _packagePathByModulePath.
+  /**
+   * The inverse of _packagePathByModulePath.
+   * Ensure that Object.create(null) is used to create
+   * the packageCache object to avoid prototype pollution issues.
+   */
   _modulePathsByPackagePath: {
     [filePath: string]: Set<string>,
+    /*::
     __proto__: null,
+    */
     ...
   };
 

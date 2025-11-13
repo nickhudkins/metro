@@ -16,7 +16,8 @@ import type {
 import type {ResolverInputOptions} from '../shared/types';
 import type Package from './Package';
 import type {ConfigT} from 'metro-config';
-import type MetroFileMap, {
+import type MetroFileMap from 'metro-file-map';
+import type {
   ChangeEvent,
   FileSystem,
   HasteMap,

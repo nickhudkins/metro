@@ -41,7 +41,9 @@ export default class BatchProcessor<TItem, TResult> {
   _options: BatchProcessorOptions;
   _processBatch: ProcessBatch<TItem, TResult>;
   _queue: Array<QueueItem<TItem, TResult>>;
+  /*::
   _timeoutHandle: ?TimeoutID;
+  */
 
   constructor(
     options: BatchProcessorOptions,

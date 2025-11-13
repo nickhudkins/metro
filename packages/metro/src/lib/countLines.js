@@ -14,4 +14,6 @@ const newline = /\r\n?|\n|\u2028|\u2029/g;
 const countLines = (string: string): number =>
   (string.match(newline) || []).length + 1;
 
-export default countLines;
+export default countLines as interface {
+  (string: string): number,
+};

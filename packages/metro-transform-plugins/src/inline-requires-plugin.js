@@ -11,7 +11,10 @@
 import type {PluginObj} from '@babel/core';
 import typeof * as Babel from '@babel/core';
 import type {NodePath, Scope} from '@babel/traverse';
-import type {Program} from '@babel/types';
+import type {
+  Program,
+  SourceLocation as BabelSourceLocation,
+} from '@babel/types';
 
 type Types = Babel['types'];
 

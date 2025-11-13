@@ -18,6 +18,7 @@ import type {
   Program,
   Statement,
 } from '@babel/types';
+import type {SourceLocation as BabelSourceLocation} from '@babel/types';
 // Type only dependency. This is not a runtime dependency
 // eslint-disable-next-line import/no-extraneous-dependencies
 import typeof * as Types from '@babel/types';

@@ -17,4 +17,4 @@ const writeFile: typeof fs.promises.writeFile = throat(
   fs.promises.writeFile,
 );
 
-export default writeFile;
+export default writeFile as typeof fs.promises.writeFile;

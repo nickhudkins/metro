@@ -12,6 +12,7 @@
 import type {RequireContext} from '../lib/contextModule';
 import type {RequireContextParams} from '../ModuleGraph/worker/collectDependencies';
 import type {Graph} from './Graph';
+import type {SourceLocation as BabelSourceLocation} from '@babel/types';
 import type {JsTransformOptions} from 'metro-transform-worker';
 
 import CountingSet from '../lib/CountingSet';

@@ -27,7 +27,6 @@ import type {StackFrameInput, StackFrameOutput} from './Server/symbolicate';
 import type {
   BuildOptions,
   BundleOptions,
-  GraphOptions,
   ResolverInputOptions,
   SplitBundleOptions,
 } from './shared/types';
@@ -98,16 +97,15 @@ export type BundleMetadata = {
 };
 
 type ProcessStartContext = {
+  ...SplitBundleOptions,
   +buildNumber: number,
   +bundleOptions: BundleOptions,
   +graphId: GraphId,
-  +graphOptions: GraphOptions,
   +mres: MultipartResponse | ServerResponse,
   +req: IncomingMessage,
   +revisionId?: ?RevisionId,
   +bundlePerfLogger: RootPerfLogger,
   +requestStartTimestamp: number,
-  ...SplitBundleOptions,
 };
 
 type ProcessDeleteContext = {

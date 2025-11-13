@@ -9,7 +9,7 @@
  * @oncall react_native
  */
 
-import type {Bundle, BundleMetadata} from 'metro-runtime/src/modules/types';
+import type {Bundle, BundleMetadata} from 'metro-runtime/private/modules/types';
 
 /**
  * Serializes a bundle into a plain JS bundle.

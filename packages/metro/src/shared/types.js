@@ -27,6 +27,12 @@ import type {
 type MetroSourceMapOrMappings =
   | MixedSourceMap
   | Array<MetroSourceMapSegmentTuple>;
+/**
+ * $FlowFixMe[unclear-type] -- @typescript-eslint/no-explicit-any
+ */
+export type SafeOptionalProps<T: Record<string, any>> = {
+  [K in keyof T]: T[K] extends void ? void | T[K] : T[K],
+};
 
 export enum SourcePathsMode {
   /* Use absolute paths for source files in source maps (default). */

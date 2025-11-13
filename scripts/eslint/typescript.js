@@ -29,8 +29,14 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   overrides: [
     {
-      //
-      files: ['packages/metro-runtime/types/polyfills/require.d.ts'],
+      // These files have valid use of `any`, unfortunately, flow-api-translator
+      // strips all comments other than JSBlock comments, so we can't add
+      // `// eslint-disable-next-line @typescript-eslint/no-explicit-any` in the
+      // source .ts files. Commece crying.
+      files: [
+        'packages/metro-runtime/types/polyfills/require.d.ts',
+        'packages/metro/types/DeltaBundler/WorkerFarm.d.ts',
+      ],
       rules: {
         '@typescript-eslint/no-explicit-any': 'off',
       },

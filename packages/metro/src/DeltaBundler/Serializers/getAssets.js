@@ -43,7 +43,7 @@ export default async function getAssets(
           module.path,
           path.relative(options.projectRoot, module.path),
           options.assetPlugins,
-          options.platform,
+          options.platform == null ? null : options.platform,
           options.publicPath,
         ),
       );

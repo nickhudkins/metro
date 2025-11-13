@@ -8,7 +8,7 @@
  * @flow
  */
 
-import type {FormattedError} from 'metro-runtime/src/modules/types';
+import type {FormattedError} from 'metro-runtime/private/modules/types';
 
 import GraphNotFoundError from '../IncrementalBundler/GraphNotFoundError';
 import ResourceNotFoundError from '../IncrementalBundler/ResourceNotFoundError';

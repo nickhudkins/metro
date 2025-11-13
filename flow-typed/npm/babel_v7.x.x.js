@@ -28,11 +28,6 @@ type _BabelSourceMapSegment = {
   ...
 };
 
-export type BabelSourceLocation = $ReadOnly<{
-  start: $ReadOnly<{line: number, column: number}>,
-  end: $ReadOnly<{line: number, column: number}>,
-}>;
-
 declare module '@babel/parser' {
   // See https://github.com/babel/babel/blob/master/packages/babel-parser/typings/babel-parser.d.ts
   declare export type ParserPlugin =

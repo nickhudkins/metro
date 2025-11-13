@@ -19,6 +19,7 @@ import type {
   State,
 } from '../collectDependencies';
 import type {NodePath} from '@babel/traverse';
+import type {SourceLocation as BabelSourceLocation} from '@babel/types';
 import type {MetroBabelFileMetadata} from 'metro-babel-transformer';
 
 import collectDependencies from '../collectDependencies';

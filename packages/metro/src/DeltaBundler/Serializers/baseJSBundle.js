@@ -15,7 +15,7 @@ import type {
   ReadOnlyGraph,
   SerializerOptions,
 } from '../types';
-import type {Bundle} from 'metro-runtime/src/modules/types';
+import type {Bundle} from 'metro-runtime/private/modules/types';
 
 import getAppendScripts from '../../lib/getAppendScripts';
 import processModules from './helpers/processModules';

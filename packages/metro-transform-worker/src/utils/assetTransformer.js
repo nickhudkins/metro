@@ -34,7 +34,7 @@ export async function transform(
     absolutePath,
     filename,
     assetDataPlugins,
-    options.platform,
+    options.platform || null,
     options.publicPath,
   );
 

@@ -17,12 +17,12 @@ import type {Readable} from 'stream';
 import {Worker as JestWorker} from 'jest-worker';
 import {Logger} from 'metro-core';
 
-type WorkerInterface = {
+type WorkerInterface = $ReadOnly<{
+  ...Worker,
   getStdout(): Readable,
   getStderr(): Readable,
-  end(): void,
-  ...Worker,
-};
+  end(): Promise<void>,
+}>;
 
 type TransformerResult = $ReadOnly<{
   result: TransformResult<>,
@@ -32,7 +32,7 @@ type TransformerResult = $ReadOnly<{
 export default class WorkerFarm {
   _config: ConfigT;
   _transformerConfig: TransformerConfig;
-  _worker: WorkerInterface | Worker;
+  _worker: Worker | WorkerInterface;
 
   constructor(config: ConfigT, transformerConfig: TransformerConfig) {
     this._config = config;
@@ -106,14 +106,14 @@ export default class WorkerFarm {
     absoluteWorkerPath: string,
     exposedMethods: $ReadOnlyArray<string>,
     numWorkers: number,
-  ): any {
+  ): WorkerInterface {
     const env = {
       ...process.env,
       // Force color to print syntax highlighted code frames.
       FORCE_COLOR: 1,
     };
 
-    return new JestWorker(absoluteWorkerPath, {
+    return new JestWorker<Worker>(absoluteWorkerPath, {
       computeWorkerKey: this._config.stickyWorkers
         ? // $FlowFixMe[method-unbinding] added when improving typing for this parameters
           // $FlowFixMe[incompatible-type]

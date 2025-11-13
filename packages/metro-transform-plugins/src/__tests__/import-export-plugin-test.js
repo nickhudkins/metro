@@ -9,6 +9,7 @@
  * @oncall react_native
  */
 
+import type {SourceLocation as BabelSourceLocation} from '@babel/types';
 import type {Dependency} from 'metro/private/ModuleGraph/worker/collectDependencies';
 
 import collectDependencies from 'metro/private/ModuleGraph/worker/collectDependencies';

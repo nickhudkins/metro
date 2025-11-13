@@ -8,7 +8,8 @@
  * @flow
  */
 
-import type IncrementalBundler, {RevisionId} from './IncrementalBundler';
+import type IncrementalBundler from './IncrementalBundler';
+import type {RevisionId} from './IncrementalBundler';
 import type {GraphOptions} from './shared/types';
 import type {ConfigT, RootPerfLogger} from 'metro-config';
 import type {
@@ -16,7 +17,7 @@ import type {
   HmrErrorMessage,
   HmrMessage,
   HmrUpdateMessage,
-} from 'metro-runtime/src/modules/types';
+} from 'metro-runtime/private/modules/types';
 
 import hmrJSBundle from './DeltaBundler/Serializers/hmrJSBundle';
 import GraphNotFoundError from './IncrementalBundler/GraphNotFoundError';

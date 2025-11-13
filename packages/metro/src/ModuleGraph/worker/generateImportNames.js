@@ -8,6 +8,8 @@
  * @flow strict-local
  */
 
+import type {Node as BabelNode} from '@babel/types';
+
 import traverse from '@babel/traverse';
 import nullthrows from 'nullthrows';
 

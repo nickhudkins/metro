@@ -23,9 +23,11 @@ export type DeltaBundle = {
   +deleted: $ReadOnlyArray<number>,
 };
 
+/*::
 export type BundleVariant =
   | {+base: true, +revisionId: string, ...Bundle}
   | {+base: false, +revisionId: string, ...DeltaBundle};
+*/
 
 export type BundleMetadata = {
   +pre: number,

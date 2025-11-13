@@ -15,6 +15,7 @@ import type {
 } from '../../DeltaBundler/types';
 import type {Reporter} from '../../lib/reporting';
 import type {ResolverInputOptions} from '../../shared/types';
+import type {SourceLocation as BabelSourceLocation} from '@babel/types';
 import type {
   CustomResolver,
   DoesFileExist,

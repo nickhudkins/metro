@@ -9,7 +9,7 @@
  * @oncall react_native
  */
 
-import type {DeltaBundle} from 'metro-runtime/src/modules/types';
+import type {DeltaBundle} from 'metro-runtime/private/modules/types';
 
 export default function mergeDeltas(
   delta1: DeltaBundle,

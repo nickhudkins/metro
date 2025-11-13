@@ -29,6 +29,18 @@ type BundleProgress = {
   ...
 };
 
+// Adapted from https://github.com/flow-typed/flow-typed/blob/main/definitions/environments/node/flow_v0.261.x-/node.js
+export interface ErrnoError extends Error {
+  address?: string;
+  code?: string;
+  dest?: string;
+  errno?: string | number;
+  info?: Object;
+  path?: string;
+  port?: number;
+  syscall?: string;
+}
+
 export type TerminalReportableEvent =
   | ReportableEvent
   | {

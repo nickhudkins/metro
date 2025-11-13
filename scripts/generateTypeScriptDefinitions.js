@@ -27,11 +27,14 @@ const WORKSPACE_ROOT = path.resolve(__dirname, '..');
 const TYPES_DIR = 'types';
 
 export const AUTO_GENERATED_PATTERNS: $ReadOnlyArray<string> = [
+  'packages/metro/**',
   'packages/metro-cache/**',
   'packages/metro-config/**',
   'packages/metro-core/**',
   'packages/metro-resolver/**',
+  'packages/metro-file-map/**',
   'packages/metro-source-map/**',
+  'packages/metro-runtime/**',
   'packages/metro-transform-worker/**',
   'packages/ob1/**',
 ];
@@ -47,6 +50,22 @@ const IGNORED_PATTERNS = [
   'packages/metro-babel-register/**',
   'packages/*/build/**',
   'packages/metro/src/integration_tests/**',
+
+  // TODO: Can we improve the generation to handle these modules?
+  'packages/metro-file-map/src/watchers/WatchmanWatcher.js',
+  'packages/metro-file-map/src/watchers/FallbackWatcher.js',
+  'packages/metro-file-map/src/crawlers/watchman/**',
+
+  // TODO: Can we improve the generation to handle these modules?
+  'packages/metro-runtime/src/modules/asyncRequire.js',
+  'packages/metro-runtime/src/modules/HMRClient.js',
+  'packages/metro-runtime/src/modules/null-module.js',
+  'packages/metro-runtime/src/modules/vendor/**',
+
+  // TODO: Can we improve the generation to handle these modules?
+  'packages/metro/src/ModuleGraph/test-helpers.js',
+  'packages/metro/src/commands/**',
+  'packages/metro/src/cli-utils.js',
 ];
 
 export async function generateTsDefsForJsGlobs(
@@ -119,8 +138,18 @@ export async function generateTsDefsForJsGlobs(
         } else {
           const tsDef = await translateFlowDefToTSDef(flowDef);
 
-          // Fix up gap left in license header by removal of atflow
-          const beforeLint = tsDef.replace('\n *\n *\n', '\n *\n');
+          const flowFixMeReplacementRegex =
+            /\/\*\*[\s\*]*\$FlowFixMe\[[\w-]+\][\s\*]*--[\s\*]*(@?[\w\/-]+)[\s\*]*\*\//g;
+
+          const beforeLint = tsDef
+            // Fix up gap left in license header by removal of atflow
+            .replace('\n *\n *\n', '\n *\n')
+            // Add eslint-disable comments so that we can be selective about
+            // our use of `any` without disabling the rule file-or-project-wide.
+            .replaceAll(
+              flowFixMeReplacementRegex,
+              '/* eslint-disable-next-line $1 */',
+            );
 
           const [lintResult] = await linter.lintText(beforeLint, {
             filePath: absoluteTsFile,
@@ -130,10 +159,14 @@ export async function generateTsDefsForJsGlobs(
             console.warn(sourceFile, lintResult.messages);
           }
 
-          const finalOutput = await prettier.format(
-            lintResult.output ?? beforeLint,
-            prettierConfig,
+          // Strip the `eslint` comments before writing the final output,
+          // as we don't want to include eslint-disable comments in generated files.
+          const toWrite = (lintResult.output ?? beforeLint).replaceAll(
+            flowFixMeReplacementRegex,
+            '',
           );
+
+          const finalOutput = await prettier.format(toWrite, prettierConfig);
 
           existingDefs.delete(absoluteTsFile);
 

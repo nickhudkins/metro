@@ -65,6 +65,7 @@
     "@babel/plugin-transform-runtime": "^7.24.7",
     "@react-native/babel-preset": "0.78.0",
     "@react-native/metro-babel-transformer": "0.78.0",
+    "@types/ws": "^7.4.7",
     "babel-jest": "^29.7.0",
     "dedent": "^0.7.0",
     "jest-snapshot": "^29.7.0",
@@ -74,6 +75,15 @@
     "mock-req": "^0.2.0",
     "mock-res": "^0.6.0",
     "stack-trace": "^0.0.10"
+  },
+  "peerDependencies": {
+    "@types/ws": "^7.4.7"
+  },
+  "peerDependenciesMeta": {
+    "@types/ws": {
+      "__description__": "As a consumer of Metro, you might not need this package unless you are using TypeScript and interacting with Metro's WebSocket server directly.",
+      "optional": true
+    }
   },
   "license": "MIT",
   "engines": {

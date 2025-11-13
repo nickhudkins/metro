@@ -5,10 +5,15 @@
     "noEmit": true,
     "baseUrl": ".",
     "skipLibCheck": false,
+    // lib DOM is the TS equivalent of flow-typed/dom.js
+    "lib": ["DOM"],
     "paths": {
       "metro": ["./packages/metro/types"],
       "metro/private/*": ["./packages/metro/types/*"],
       "metro-*": ["./packages/metro-*/types"],
+      "metro-core/private/*": ["./packages/metro-core/types/*"],
+      "metro-resolver/private/*": ["./packages/metro-resolver/types/*"],
+      "metro-runtime/private/*": ["./packages/metro-runtime/types/*"],
       // Mappings for main entry points which are not "src/index.js". Required
       // only for this tsconfig - external consumers will read the "main" field
       // and find the adjacent typedef file.

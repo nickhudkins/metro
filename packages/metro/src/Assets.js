@@ -201,9 +201,10 @@ export async function getAssetData(
   assetPath: string,
   localPath: string,
   assetDataPlugins: $ReadOnlyArray<string>,
-  platform: ?string = null,
+  maybePlatform: string | null,
   publicPath: string,
 ): Promise<AssetData> {
+  const platform = maybePlatform || null;
   // If the path of the asset is outside of the projectRoot, we don't want to
   // use `path.join` since this will generate an incorrect URL path. In that
   // case we just concatenate the publicPath with the relative path.
@@ -255,7 +256,7 @@ async function applyAssetDataPlugins(
 
 /**
  * Returns all the associated files (for different resolutions) of an asset.
- **/
+ **/ getAssetData;
 export async function getAssetFiles(
   assetPath: string,
   platform: ?string = null,
@@ -280,9 +281,10 @@ export async function getAsset(
   relativePath: string,
   projectRoot: string,
   watchFolders: $ReadOnlyArray<string>,
-  platform: ?string = null,
+  maybePlatform: string | null,
   assetExts: $ReadOnlyArray<string>,
 ): Promise<Buffer> {
+  const platform = maybePlatform || null;
   const assetData = AssetPaths.parse(
     relativePath,
     new Set(platform != null ? [platform] : []),

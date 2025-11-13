@@ -10,7 +10,8 @@
  */
 
 import type Bundler from '../Bundler';
-import type DeltaBundler, {TransformFn} from '../DeltaBundler';
+import type DeltaBundler from '../DeltaBundler';
+import type {TransformFn} from '../DeltaBundler';
 import type {
   BundlerResolution,
   TransformInputOptions,

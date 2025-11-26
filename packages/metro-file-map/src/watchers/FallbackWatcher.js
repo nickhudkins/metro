@@ -156,7 +156,7 @@ export default class FallbackWatcher extends AbstractWatcher {
   /**
    * Watch a directory.
    */
-  _watchdir: string => boolean = (dir: string) => {
+  _watchdir: (dir: string) => boolean = (dir: string) => {
     if (this.watched[dir]) {
       return false;
     }

@@ -49,8 +49,9 @@ export default class WatchmanWatcher extends AbstractWatcher {
   +watchmanDeferStates: $ReadOnlyArray<string>;
   #deferringStates: ?Set<string> = null;
 
-  constructor(dir: string, {watchmanDeferStates, ...opts}: WatcherOptions) {
-    super(dir, opts);
+  constructor(dir: string, opts: WatcherOptions) {
+    const {watchmanDeferStates, ...baseOpts} = opts;
+    super(dir, baseOpts);
 
     this.watchmanDeferStates = watchmanDeferStates;
 

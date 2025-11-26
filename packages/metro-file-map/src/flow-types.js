@@ -89,7 +89,7 @@ export type CacheManagerFactoryOptions = $ReadOnly<{
 export type CacheManagerWriteOptions = $ReadOnly<{
   changedSinceCacheRead: boolean,
   eventSource: CacheManagerEventSource,
-  onWriteError: Error => void,
+  onWriteError: (error: Error) => void,
 }>;
 
 // A path that is
@@ -187,7 +187,7 @@ export type FileMapPluginInitOptions<SerializableState> = $ReadOnly<{
   pluginState: ?SerializableState,
 }>;
 
-type V8Serializable = interface {};
+type V8Serializable = unknown;
 
 export interface FileMapPlugin<SerializableState = V8Serializable> {
   +name: string;
@@ -416,8 +416,8 @@ export type ReadOnlyRawMockMap = $ReadOnly<{
 
 export interface WatcherBackend {
   getPauseReason(): ?string;
-  onError((error: Error) => void): () => void;
-  onFileEvent((event: WatcherBackendChangeEvent) => void): () => void;
+  onError(listener: (error: Error) => void): () => void;
+  onFileEvent(listener: (event: WatcherBackendChangeEvent) => void): () => void;
   startWatching(): Promise<void>;
   stopWatching(): Promise<void>;
 }
@@ -472,4 +472,6 @@ export type WorkerMetadata = $ReadOnly<{
   content?: ?Buffer,
 }>;
 
-export type WorkerSetupArgs = $ReadOnly<{}>;
+export interface WorkerSetupArgs {
+  __future__?: false;
+}
